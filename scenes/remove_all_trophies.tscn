@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vqx11a0tqg0d"]
+
+[ext_resource type="Script" uid="uid://cu40dfn2r767e" path="res://RemoveAllTrophies.gd" id="1_sx70c"]
+
+[node name="RemoveAllTrophies" type="Node2D"]
+script = ExtResource("1_sx70c")

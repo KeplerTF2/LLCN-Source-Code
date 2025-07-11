@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://rqra1rdc6hkj"]
+
+[sub_resource type="Resource" id="Resource_wahhd"]
+metadata/__load_path__ = "res://assets/office/office.png"
+
+[sub_resource type="Resource" id="Resource_60lji"]
+metadata/__load_path__ = "res://icon.png"
+
+[sub_resource type="Resource" id="Resource_b6uef"]
+metadata/__load_path__ = "res://assets/office/Sprite2.gd"
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(64, 64)
+
+[node name="office_viewport" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2(0, 216)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("Resource_wahhd")
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2(744, 312)
+texture = SubResource("Resource_60lji")
+script = SubResource("Resource_b6uef")
+
+[node name="Area2D" type="Area2D" parent="Sprite2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2/Area2D"]
+shape = SubResource("1")
+
+[connection signal="mouse_entered" from="Sprite2/Area2D" to="Sprite2" method="_on_Area2D_mouse_entered"]

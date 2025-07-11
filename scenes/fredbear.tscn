@@ -1,0 +1,123 @@
+[gd_scene load_steps=16 format=3 uid="uid://ban67uggd1baa"]
+
+[ext_resource type="Script" uid="uid://drdbjooo72f08" path="res://Fredbear.gd" id="1_4irkh"]
+[ext_resource type="Shader" uid="uid://bht8t8hwio7im" path="res://scenes/cams.gdshader" id="2_kkody"]
+[ext_resource type="Texture2D" uid="uid://3tddf5psy1ux" path="res://assets/camera/cam10gfreddy.png" id="3_c1y85"]
+[ext_resource type="Texture2D" uid="uid://o56mqblxlrmh" path="res://assets/camera/fredbear_low.png" id="3_taplk"]
+[ext_resource type="Texture2D" uid="uid://batns1e31xopc" path="res://assets/camera/fredbear_high.png" id="3_uuj8y"]
+[ext_resource type="Shader" uid="uid://8ecfbgdsl7km" path="res://scenes/eyes.gdshader" id="4_66isv"]
+[ext_resource type="Texture2D" uid="uid://pvi0nn8u16ef" path="res://assets/camera/fredbear_med.png" id="5_0mubl"]
+[ext_resource type="Texture2D" uid="uid://ctpu0xidc5eja" path="res://assets/camera/load/load4.png" id="5_kdaqr"]
+[ext_resource type="AudioStream" uid="uid://weeg28y8lgau" path="res://assets/sounds/fredbearlaugh/high.ogg" id="9_3agem"]
+[ext_resource type="AudioStream" uid="uid://b0syq1tbrxnr" path="res://assets/sounds/fredbearlaugh/med.ogg" id="10_evocl"]
+[ext_resource type="AudioStream" uid="uid://8sncy3w1sohg" path="res://assets/sounds/fredbearlaugh/low.ogg" id="11_omyca"]
+[ext_resource type="Script" uid="uid://dl5fgio2ul8pn" path="res://scenes/mixed_bag.gd" id="12_31dsb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku10a"]
+shader = ExtResource("2_kkody")
+shader_parameter/scroll = 0.0
+shader_parameter/colour = Vector4(1, 1, 1, 1)
+shader_parameter/displacement_scale = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6egcm"]
+shader = ExtResource("4_66isv")
+shader_parameter/scroll = 0.0
+shader_parameter/colour = Vector4(1, 1, 1, 1)
+shader_parameter/displacement_scale = 2.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1br3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uuj8y")
+}],
+"loop": true,
+"name": &"high",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_taplk")
+}],
+"loop": false,
+"name": &"low",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0mubl")
+}],
+"loop": false,
+"name": &"med",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kdaqr")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}]
+
+[node name="Fredbear" type="Node2D"]
+script = ExtResource("1_4irkh")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_ku10a")
+scale = Vector2(5, 5)
+texture = ExtResource("3_c1y85")
+centered = false
+offset = Vector2(-48, 0)
+
+[node name="Eyes" type="AnimatedSprite2D" parent="Sprite"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_6egcm")
+sprite_frames = SubResource("SpriteFrames_1br3c")
+animation = &"off"
+centered = false
+offset = Vector2(-48, 0)
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="HallucinateTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="GraceTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="high" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3agem")
+
+[node name="med" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_evocl")
+volume_db = 2.0
+
+[node name="low" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_omyca")
+
+[node name="LureBag" type="Node" parent="."]
+script = ExtResource("12_31dsb")
+Size = 9
+InitialBag = [1, 1, 1, 2, 2, 2, 3, 3, 3]
+RefillWhenEmpty = true
+
+[node name="TimeBag" type="Node" parent="."]
+script = ExtResource("12_31dsb")
+Size = 11
+InitialBag = [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+RefillWhenEmpty = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="timeout" from="HallucinateTimer" to="." method="_on_hallucinate_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="GraceTimer" to="." method="_on_grace_timer_timeout"]

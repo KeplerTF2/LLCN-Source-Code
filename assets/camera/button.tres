@@ -1,0 +1,76 @@
+[gd_resource type="Theme" load_steps=14 format=2]
+
+[ext_resource path="res://assets/camera/cameraButtonStyle.tres" type="StyleBox" id=1]
+[ext_resource path="res://assets/fonts/PressStart2P-vaV7.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/camera/buttonPressed.tres" type="StyleBox" id=3]
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+shadow_color = Color( 0, 0, 0, 0.584314 )
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxLine" id=16]
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[resource]
+default_font = SubResource( 7 )
+Button/colors/font_color = Color( 0.513726, 0.513726, 0.513726, 1 )
+Button/colors/font_color_focus = Color( 0.513726, 0.513726, 0.513726, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/fonts/font = SubResource( 7 )
+Button/styles/disabled = SubResource( 8 )
+Button/styles/hover = ExtResource( 1 )
+Button/styles/normal = ExtResource( 1 )
+Button/styles/pressed = ExtResource( 3 )
+HSlider/styles/grabber_area = SubResource( 14 )
+HSlider/styles/grabber_area_highlight = SubResource( 15 )
+HSlider/styles/slider = SubResource( 16 )
+LineEdit/styles/normal = SubResource( 12 )
+Tabs/styles/button = SubResource( 13 )
+Tabs/styles/tab_bg = SubResource( 13 )
+Tabs/styles/tab_fg = SubResource( 13 )
+VSlider/styles/grabber_area = SubResource( 9 )
+VSlider/styles/grabber_area_highlight = SubResource( 10 )
+VSlider/styles/slider = SubResource( 11 )

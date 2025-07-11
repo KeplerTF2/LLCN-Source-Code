@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://br2yr02lc2ikb"]
+
+[ext_resource type="Script" uid="uid://dj0fcsl38xfmi" path="res://scenes/test_mixed_bag.gd" id="1_rhfm1"]
+[ext_resource type="Script" uid="uid://dl5fgio2ul8pn" path="res://scenes/mixed_bag.gd" id="2_8d4mx"]
+
+[node name="test" type="Node2D"]
+script = ExtResource("1_rhfm1")
+
+[node name="MixedBag" type="Node" parent="."]
+script = ExtResource("2_8d4mx")
+Size = 5
+InitialBag = [0, 1, 2]
+RefillWhenEmpty = true

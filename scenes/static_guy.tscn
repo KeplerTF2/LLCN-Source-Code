@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwi0txet1fsry"]
+
+[ext_resource type="Script" uid="uid://b4tipqs6tgtfq" path="res://scenes/static_guy.gd" id="1_df8yv"]
+[ext_resource type="Shader" uid="uid://bkkxl0dt5qtd5" path="res://scenes/opaque_static.gdshader" id="2_ely10"]
+[ext_resource type="AudioStream" uid="uid://dmg7elws5ol71" path="res://assets/sounds/key_fumbling.wav" id="2_otnk1"]
+[ext_resource type="Texture2D" uid="uid://v0gd0xyoqygh" path="res://assets/camera/static.png" id="3_iuf5s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eodef"]
+shader = ExtResource("2_ely10")
+shader_parameter/scroll = 0.0
+shader_parameter/opacity = 1.0
+shader_parameter/displacement_scale = 2.0
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[node name="StaticGuy" type="Node2D"]
+script = ExtResource("1_df8yv")
+
+[node name="OpaqueStatic" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_eodef")
+scale = Vector2(5, 5)
+texture = ExtResource("3_iuf5s")
+centered = false
+
+[node name="OfficeTimer" type="Timer" parent="."]
+wait_time = 40.0
+one_shot = true
+
+[node name="KeyFumbling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_otnk1")
+volume_db = -10.0
+
+[connection signal="timeout" from="OfficeTimer" to="." method="_on_office_timer_timeout"]

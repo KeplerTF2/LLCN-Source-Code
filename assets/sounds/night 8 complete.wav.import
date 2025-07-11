@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://duxjy5ye2y0y4"
+path="res://.godot/imported/night 8 complete.wav-ea3191d2ec6549a1ed3680771ea94243.sample"
+
+[deps]
+
+source_file="res://assets/sounds/night 8 complete.wav"
+dest_files=["res://.godot/imported/night 8 complete.wav-ea3191d2ec6549a1ed3680771ea94243.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

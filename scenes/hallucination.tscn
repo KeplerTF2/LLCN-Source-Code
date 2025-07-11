@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://pfvvsr6rifhc"]
+
+[ext_resource type="Script" uid="uid://c8x3s6wcw3ins" path="res://hallucination.gd" id="1_l5moy"]
+[ext_resource type="Shader" uid="uid://de1n0bovhebfq" path="res://scenes/hallucination.gdshader" id="2_xcxyj"]
+[ext_resource type="Texture2D" uid="uid://ctqpwung37w1v" path="res://assets/fredbear.png" id="3_y2nn5"]
+[ext_resource type="AudioStream" uid="uid://ckxh5idp1eq5" path="res://assets/sounds/gibberish.wav" id="4_n6hxu"]
+[ext_resource type="AudioStream" uid="uid://y1082wx1fkq7" path="res://assets/sounds/fade.wav" id="5_g7e4k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ro0ju"]
+shader = ExtResource("2_xcxyj")
+shader_parameter/u_amp_flutter = 10.0
+shader_parameter/u_angle_flutter = 30.0
+shader_parameter/u_speed_flutter = 1.0
+shader_parameter/u_amp_wave = 10.0
+shader_parameter/u_angle_wave = -30.0
+shader_parameter/u_speed_wave = 2.0
+shader_parameter/u_len_wave = 100.0
+shader_parameter/u_shape_wave = 3.0
+shader_parameter/u_width_wave = 1.0
+shader_parameter/u_x_light = 0.2
+shader_parameter/u_shape_light = 2.0
+shader_parameter/u_width_light = 1.0
+
+[sub_resource type="Gradient" id="Gradient_4x2c2"]
+offsets = PackedFloat32Array(0.512987, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7ksgl"]
+gradient = SubResource("Gradient_4x2c2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="hallucination" type="Node2D"]
+script = ExtResource("1_l5moy")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_ro0ju")
+scale = Vector2(5, 5)
+texture = ExtResource("3_y2nn5")
+
+[node name="Vignette" type="Sprite2D" parent="Sprite"]
+process_mode = 1
+z_index = 3
+position = Vector2(0, -7.62939e-06)
+scale = Vector2(6, 3.375)
+texture = SubResource("GradientTexture2D_7ksgl")
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n6hxu")
+pitch_scale = 0.5
+
+[node name="Deactivate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_g7e4k")

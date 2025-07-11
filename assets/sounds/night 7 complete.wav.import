@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dnj2md3nyu3jo"
+path="res://.godot/imported/night 7 complete.wav-05e0a2dfe06632767ab4012f41e958b8.sample"
+
+[deps]
+
+source_file="res://assets/sounds/night 7 complete.wav"
+dest_files=["res://.godot/imported/night 7 complete.wav-05e0a2dfe06632767ab4012f41e958b8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

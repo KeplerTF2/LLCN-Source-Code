@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://flbm8qowypcv"]
+
+[ext_resource type="Texture2D" uid="uid://ca2f1ivkx6nim" path="res://assets/office/freddy_deactive.png" id="1_6uxl7"]
+[ext_resource type="Script" uid="uid://cvyolswkoy1lo" path="res://scenes/freddy.gd" id="1_d0p1w"]
+[ext_resource type="Texture2D" uid="uid://dtk6px2ia31sg" path="res://assets/office/freddy_active.png" id="2_r67uq"]
+[ext_resource type="AudioStream" uid="uid://cok1ben88tipb" path="res://assets/sounds/freddy_machine_loop.wav" id="4_on8qv"]
+[ext_resource type="AudioStream" uid="uid://cfgfqiwd0hmwm" path="res://assets/sounds/freddy_machine_end.wav" id="5_fsji7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_edh3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6uxl7")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r67uq")
+}],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_de8h5"]
+radius = 72.4431
+
+[node name="freddy" type="Node2D"]
+position = Vector2(272, 0)
+script = ExtResource("1_d0p1w")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-272, -3.05176e-05)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_edh3x")
+animation = &"off"
+centered = false
+
+[node name="Active" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_on8qv")
+volume_db = -7.0
+
+[node name="Deactivate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fsji7")
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="PitchTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-3.05176e-05, 199)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_de8h5")
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="timeout" from="PitchTimer" to="." method="_on_pitch_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

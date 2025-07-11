@@ -1,0 +1,185 @@
+[gd_scene load_steps=15 format=3 uid="uid://yt77a8wgr3t5"]
+
+[ext_resource type="Script" uid="uid://fyeqngo0ng5y" path="res://scenes/foxy.gd" id="1_g7nw0"]
+[ext_resource type="Shader" uid="uid://8ecfbgdsl7km" path="res://scenes/eyes.gdshader" id="2_jk0wd"]
+[ext_resource type="Texture2D" uid="uid://cib16fd8lnx2l" path="res://assets/camera/cam4hook.png" id="4_mpqgh"]
+[ext_resource type="Texture2D" uid="uid://bfpb3iqdgjjgx" path="res://assets/camera/cam4foxyl.png" id="5_n5eqq"]
+[ext_resource type="Texture2D" uid="uid://ctpu0xidc5eja" path="res://assets/camera/load/load4.png" id="5_qhx55"]
+[ext_resource type="Texture2D" uid="uid://bejxxtjy8gc2v" path="res://assets/camera/cam4foxyr.png" id="6_gtjbb"]
+[ext_resource type="Texture2D" uid="uid://d25j1kae688ey" path="res://assets/camera/cam9foxy.png" id="7_e4s4l"]
+[ext_resource type="Texture2D" uid="uid://vqhic8e526h" path="res://assets/camera/cam8foxy.png" id="8_3qlfv"]
+[ext_resource type="AudioStream" uid="uid://cej667kk2vuad" path="res://assets/sounds/foxy/foxycove.wav" id="10_du354"]
+[ext_resource type="Script" uid="uid://dl5fgio2ul8pn" path="res://scenes/mixed_bag.gd" id="10_umsnf"]
+[ext_resource type="AudioStream" uid="uid://c5pfsougwq8vw" path="res://assets/sounds/foxy/foxyhall.wav" id="11_1xqv4"]
+[ext_resource type="AudioStream" uid="uid://b1nyv0nvcevkl" path="res://assets/sounds/fabric.wav" id="12_vy5f3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f020u"]
+shader = ExtResource("2_jk0wd")
+shader_parameter/scroll = 0.0
+shader_parameter/colour = Vector4(1, 1, 1, 1)
+shader_parameter/displacement_scale = 2.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1fgk8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": true,
+"name": &"11",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mpqgh")
+}],
+"loop": true,
+"name": &"5hook",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_n5eqq")
+}],
+"loop": true,
+"name": &"5left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gtjbb")
+}],
+"loop": true,
+"name": &"5right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhx55")
+}],
+"loop": false,
+"name": &"7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_e4s4l")
+}],
+"loop": false,
+"name": &"8",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_3qlfv")
+}],
+"loop": false,
+"name": &"9",
+"speed": 5.0
+}]
+
+[node name="Foxy" type="Node2D" node_paths=PackedStringArray("Sprites")]
+script = ExtResource("1_g7nw0")
+Sprites = NodePath("Sprites")
+StartingCam = 5
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_f020u")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_1fgk8")
+animation = &"1"
+centered = false
+offset = Vector2(-48, 0)
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CamTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SameCamTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MixedBag" type="Node" parent="."]
+script = ExtResource("10_umsnf")
+Size = 10
+RefillWhenEmpty = true
+
+[node name="FootstepsCove" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(960, 0)
+stream = ExtResource("10_du354")
+volume_db = 10.0
+panning_strength = 10.0
+
+[node name="FootstepsHallway" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(960, 0)
+stream = ExtResource("11_1xqv4")
+volume_db = 10.0
+panning_strength = 10.0
+
+[node name="Fabric" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_vy5f3")
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="timeout" from="CamTimer" to="." method="_on_cam_timer_timeout"]
+[connection signal="timeout" from="SameCamTimer" to="." method="_on_cam_timer_timeout"]

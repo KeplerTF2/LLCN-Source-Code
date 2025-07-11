@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://5u74pef3c8wt"]
+
+[ext_resource type="Shader" uid="uid://bkkxl0dt5qtd5" path="res://scenes/opaque_static.gdshader" id="1_ddws0"]
+[ext_resource type="Texture2D" uid="uid://v0gd0xyoqygh" path="res://assets/camera/static.png" id="2_5u2w8"]
+[ext_resource type="Shader" uid="uid://b1qf6jo0e3ka8" path="res://scenes/bars.gdshader" id="3_xgg2t"]
+[ext_resource type="Texture2D" uid="uid://dms4asa20bkw5" path="res://assets/camera/bars.png" id="4_frv1s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgla5"]
+shader = ExtResource("1_ddws0")
+shader_parameter/scroll = 0.0
+shader_parameter/opacity = 1.0
+shader_parameter/displacement_scale = 2.0
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s1nn5"]
+shader = ExtResource("3_xgg2t")
+shader_parameter/motion = Vector2(0, -5)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_knjja"]
+offsets = PackedFloat32Array(0.512987, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5aimr"]
+gradient = SubResource("Gradient_knjja")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Trophies" type="Node2D"]
+
+[node name="OpaqueStatic" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_bgla5")
+scale = Vector2(5, 5)
+texture = ExtResource("2_5u2w8")
+centered = false
+
+[node name="Bars" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_s1nn5")
+scale = Vector2(5, 5)
+texture = ExtResource("4_frv1s")
+centered = false
+
+[node name="Vignette" type="Sprite2D" parent="."]
+process_mode = 1
+position = Vector2(0, -7.62939e-06)
+scale = Vector2(30, 16.875)
+texture = SubResource("GradientTexture2D_5aimr")
+centered = false

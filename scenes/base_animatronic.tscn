@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy0g73kddtcvb"]
+
+[ext_resource type="Script" uid="uid://dxf7l0x1u30n8" path="res://scenes/base_animatronic.gd" id="1_2jf6b"]
+
+[node name="CamAnimatronic" type="Node2D"]
+script = ExtResource("1_2jf6b")

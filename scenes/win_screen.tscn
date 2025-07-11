@@ -1,0 +1,205 @@
+[gd_scene load_steps=23 format=3 uid="uid://c2jg37bea41he"]
+
+[ext_resource type="FontFile" uid="uid://brvcb4id55tyf" path="res://assets/fonts/PressStart2P-vaV7.ttf" id="1_5n0dx"]
+[ext_resource type="Shader" uid="uid://bkkxl0dt5qtd5" path="res://scenes/opaque_static.gdshader" id="1_shec8"]
+[ext_resource type="Script" uid="uid://dokq6prwspwxu" path="res://scenes/win_screen.gd" id="1_t8o5k"]
+[ext_resource type="Texture2D" uid="uid://v0gd0xyoqygh" path="res://assets/camera/static.png" id="2_7mit4"]
+[ext_resource type="Shader" uid="uid://b1qf6jo0e3ka8" path="res://scenes/bars.gdshader" id="3_qgyvf"]
+[ext_resource type="Texture2D" uid="uid://dms4asa20bkw5" path="res://assets/camera/bars.png" id="4_104bk"]
+[ext_resource type="AudioStream" uid="uid://dnj2md3nyu3jo" path="res://assets/sounds/night 7 complete.wav" id="6_dh2tn"]
+[ext_resource type="Script" uid="uid://78gg5ejua4uw" path="res://scenes/Unpauser.gd" id="8_5dhfp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fj3u3"]
+shader = ExtResource("1_shec8")
+shader_parameter/scroll = 0.0
+shader_parameter/opacity = 1.0
+shader_parameter/displacement_scale = 2.0
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tx3lj"]
+shader = ExtResource("3_qgyvf")
+shader_parameter/motion = Vector2(0, -5)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fygaf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxe7w"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbrvg"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_b8j01"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_5n0dx")
+Label/styles/normal = SubResource("StyleBoxEmpty_fygaf")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_bxe7w")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_gbrvg")
+
+[sub_resource type="Gradient" id="Gradient_4gqx5"]
+offsets = PackedFloat32Array(0.512987, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u8sbn"]
+gradient = SubResource("Gradient_4gqx5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwpah"]
+bg_color = Color(0.408329, 0.408329, 0.408329, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75aig"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rsiv"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1h3y2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cnor"]
+bg_color = Color(0.25, 0.25, 0.25, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_ekgtd"]
+default_font = ExtResource("1_5n0dx")
+default_font_size = 16
+Button/fonts/font = ExtResource("1_5n0dx")
+Button/styles/disabled = SubResource("StyleBoxFlat_vwpah")
+Button/styles/focus = SubResource("StyleBoxFlat_75aig")
+Button/styles/hover = SubResource("StyleBoxFlat_8rsiv")
+Button/styles/normal = SubResource("StyleBoxFlat_1h3y2")
+Button/styles/pressed = SubResource("StyleBoxFlat_8cnor")
+
+[node name="WinScreen" type="Node2D"]
+script = ExtResource("1_t8o5k")
+
+[node name="OpaqueStatic" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_fj3u3")
+scale = Vector2(5, 5)
+texture = ExtResource("2_7mit4")
+centered = false
+
+[node name="Bars" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_tx3lj")
+scale = Vector2(5, 5)
+texture = ExtResource("4_104bk")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_right = 192.0
+offset_bottom = 108.0
+scale = Vector2(10, 10)
+theme = SubResource("Theme_b8j01")
+text = "YOU WIN!
+(wow)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalPower" type="Label" parent="."]
+texture_filter = 1
+offset_left = 640.0
+offset_top = 648.0
+offset_right = 960.0
+offset_bottom = 756.0
+scale = Vector2(2, 2)
+theme = SubResource("Theme_b8j01")
+text = "Total Power Used: 0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vignette" type="Sprite2D" parent="."]
+process_mode = 1
+z_index = 3
+position = Vector2(0, -7.62939e-06)
+scale = Vector2(30, 16.875)
+texture = SubResource("GradientTexture2D_u8sbn")
+centered = false
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dh2tn")
+autoplay = true
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 4
+
+[node name="Continue" type="Button" parent="Node2D"]
+texture_filter = 1
+offset_left = 1568.0
+offset_top = 960.0
+offset_right = 1712.0
+offset_bottom = 992.0
+scale = Vector2(2, 2)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_ekgtd")
+theme_override_font_sizes/font_size = 16
+action_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "CONTINUE"
+
+[node name="Black" type="Polygon2D" parent="."]
+z_index = 4096
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-120, -184, 2968, -192, 3096, 1264, -168, 1216)
+
+[node name="Unpauser" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("8_5dhfp")
+
+[connection signal="button_down" from="Node2D/Continue" to="." method="_on_continue_button_down"]

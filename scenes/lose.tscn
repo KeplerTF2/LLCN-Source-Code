@@ -1,0 +1,233 @@
+[gd_scene load_steps=27 format=3 uid="uid://bbqx6456rd7ec"]
+
+[ext_resource type="Script" uid="uid://s5ic54cusids" path="res://scenes/lose.gd" id="1_v2log"]
+[ext_resource type="Shader" uid="uid://b1qf6jo0e3ka8" path="res://scenes/bars.gdshader" id="2_e07ah"]
+[ext_resource type="Shader" uid="uid://bkkxl0dt5qtd5" path="res://scenes/opaque_static.gdshader" id="2_emnvo"]
+[ext_resource type="Texture2D" uid="uid://v0gd0xyoqygh" path="res://assets/camera/static.png" id="3_a8144"]
+[ext_resource type="Texture2D" uid="uid://dms4asa20bkw5" path="res://assets/camera/bars.png" id="3_c87o2"]
+[ext_resource type="FontFile" uid="uid://brvcb4id55tyf" path="res://assets/fonts/PressStart2P-vaV7.ttf" id="4_sf5p8"]
+[ext_resource type="AudioStream" uid="uid://jewr4kyfbenj" path="res://assets/sounds/static.wav" id="7_a6i7d"]
+[ext_resource type="Script" uid="uid://78gg5ejua4uw" path="res://scenes/Unpauser.gd" id="8_mtfsg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53qrf"]
+shader = ExtResource("2_emnvo")
+shader_parameter/scroll = 0.0
+shader_parameter/opacity = 1.0
+shader_parameter/displacement_scale = 2.0
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrsri"]
+shader = ExtResource("2_e07ah")
+shader_parameter/motion = Vector2(0, -5)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvw3l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2w4i"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgbvb"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_fq54i"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("4_sf5p8")
+Label/styles/normal = SubResource("StyleBoxEmpty_hvw3l")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_w2w4i")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_xgbvb")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apmfx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06yiy"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yg0dl"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_h8n6w"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("4_sf5p8")
+Label/styles/normal = SubResource("StyleBoxEmpty_apmfx")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_06yiy")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_yg0dl")
+
+[sub_resource type="Gradient" id="Gradient_8myrl"]
+offsets = PackedFloat32Array(0.512987, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h8x4y"]
+gradient = SubResource("Gradient_8myrl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfoe8"]
+bg_color = Color(0.408329, 0.408329, 0.408329, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y1gg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgb7t"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1oi5y"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwipi"]
+bg_color = Color(0.25, 0.25, 0.25, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_b0a4b"]
+default_font = ExtResource("4_sf5p8")
+default_font_size = 16
+Button/fonts/font = ExtResource("4_sf5p8")
+Button/styles/disabled = SubResource("StyleBoxFlat_xfoe8")
+Button/styles/focus = SubResource("StyleBoxFlat_0y1gg")
+Button/styles/hover = SubResource("StyleBoxFlat_dgb7t")
+Button/styles/normal = SubResource("StyleBoxFlat_1oi5y")
+Button/styles/pressed = SubResource("StyleBoxFlat_iwipi")
+
+[node name="Lose" type="Node2D"]
+script = ExtResource("1_v2log")
+
+[node name="OpaqueStatic" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_53qrf")
+scale = Vector2(5, 5)
+texture = ExtResource("3_a8144")
+centered = false
+
+[node name="Bars" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_xrsri")
+scale = Vector2(5, 5)
+texture = ExtResource("3_c87o2")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_right = 192.0
+offset_bottom = 108.0
+scale = Vector2(10, 10)
+theme = SubResource("Theme_fq54i")
+text = "YOU LOSE
+(womp womp)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalPower" type="Label" parent="."]
+texture_filter = 1
+offset_left = 640.0
+offset_top = 648.0
+offset_right = 960.0
+offset_bottom = 756.0
+scale = Vector2(2, 2)
+theme = SubResource("Theme_h8n6w")
+text = "Total Power Used: 0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vignette" type="Sprite2D" parent="."]
+process_mode = 1
+z_index = 3
+position = Vector2(0, -7.62939e-06)
+scale = Vector2(30, 16.875)
+texture = SubResource("GradientTexture2D_h8x4y")
+centered = false
+
+[node name="Static" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_a6i7d")
+autoplay = true
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 4
+
+[node name="Continue" type="Button" parent="Node2D"]
+texture_filter = 1
+offset_left = 1568.0
+offset_top = 960.0
+offset_right = 1712.0
+offset_bottom = 992.0
+scale = Vector2(2, 2)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_b0a4b")
+theme_override_font_sizes/font_size = 16
+action_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "CONTINUE"
+
+[node name="Black" type="Polygon2D" parent="."]
+z_index = 4096
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-120, -184, 2968, -192, 3096, 1264, -168, 1216)
+
+[node name="Unpauser" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("8_mtfsg")
+
+[connection signal="button_down" from="Node2D/Continue" to="." method="_on_continue_button_down"]

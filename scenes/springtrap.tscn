@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5u8ght7hyaya"]
+
+[ext_resource type="Script" uid="uid://71c5kpwqi1dv" path="res://scenes/springtrap.gd" id="1_084ld"]
+[ext_resource type="Texture2D" uid="uid://d0xnx7kd033wh" path="res://assets/camera/permatrap.png" id="1_dohro"]
+[ext_resource type="Texture2D" uid="uid://dl86yr1k414xk" path="res://assets/camera/springtrap.png" id="2_7bmn3"]
+[ext_resource type="Script" uid="uid://dl5fgio2ul8pn" path="res://scenes/mixed_bag.gd" id="4_leijr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h03k6"]
+blend_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnmwd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dohro")
+}],
+"loop": true,
+"name": &"permatrap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7bmn3")
+}],
+"loop": false,
+"name": &"springtrap",
+"speed": 5.0
+}]
+
+[node name="springtrap" type="Node2D"]
+script = ExtResource("1_084ld")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_h03k6")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dnmwd")
+animation = &"springtrap"
+centered = false
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MixedBag" type="Node" parent="."]
+script = ExtResource("4_leijr")
+Size = 40
+RefillWhenEmpty = true
+
+[node name="DangerTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RestoreTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="DangerTimer" to="." method="_on_danger_timer_timeout"]
+[connection signal="timeout" from="RestoreTimer" to="." method="_on_restore_timer_timeout"]

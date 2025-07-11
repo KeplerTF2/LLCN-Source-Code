@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FNAF Power Outage Sound Effect.mp3-c16680a2581a44f62bdd882781cf2db7.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/FNAF Power Outage Sound Effect.mp3"
+dest_files=[ "res://.import/FNAF Power Outage Sound Effect.mp3-c16680a2581a44f62bdd882781cf2db7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,140 @@
+[gd_scene load_steps=16 format=3 uid="uid://cctx2vlnnxhns"]
+
+[ext_resource type="Script" uid="uid://bi2kpbactpcw0" path="res://phone_guy.gd" id="1_ia4q2"]
+[ext_resource type="FontFile" uid="uid://brvcb4id55tyf" path="res://assets/fonts/PressStart2P-vaV7.ttf" id="2_2lwaw"]
+[ext_resource type="Script" uid="uid://dl5fgio2ul8pn" path="res://scenes/mixed_bag.gd" id="3_tt2or"]
+[ext_resource type="AudioStream" uid="uid://bpvlbpc2h0wl7" path="res://assets/sounds/phonecall.wav" id="4_hb1yg"]
+[ext_resource type="AudioStream" uid="uid://dh7a7864p4wid" path="res://assets/sounds/soundofringing.mp3" id="5_sy88p"]
+[ext_resource type="AudioStream" uid="uid://bhmjyjm4uocbx" path="res://assets/sounds/camchange.ogg" id="6_ok4cm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hi48g"]
+bg_color = Color(0.408329, 0.408329, 0.408329, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8naor"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afs7x"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcwae"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6e8h"]
+bg_color = Color(0.25, 0.25, 0.25, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_j07hs"]
+default_font = ExtResource("2_2lwaw")
+default_font_size = 16
+Button/fonts/font = ExtResource("2_2lwaw")
+Button/styles/disabled = SubResource("StyleBoxFlat_hi48g")
+Button/styles/focus = SubResource("StyleBoxFlat_8naor")
+Button/styles/hover = SubResource("StyleBoxFlat_afs7x")
+Button/styles/normal = SubResource("StyleBoxFlat_wcwae")
+Button/styles/pressed = SubResource("StyleBoxFlat_l6e8h")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7wiq"]
+size = Vector2(192, 64)
+
+[sub_resource type="Gradient" id="Gradient_odqki"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yx3b8"]
+gradient = SubResource("Gradient_odqki")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[node name="phone_guy" type="Node2D"]
+script = ExtResource("1_ia4q2")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+texture_filter = 1
+offset_top = -2.0
+offset_right = 96.0
+offset_bottom = 32.0
+scale = Vector2(2, 2)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_j07hs")
+action_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "MUTE"
+
+[node name="Mobile" type="TouchScreenButton" parent="Button"]
+visible = false
+position = Vector2(48, 17)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_n7wiq")
+
+[node name="Light" type="PointLight2D" parent="Button"]
+visible = false
+position = Vector2(48, 17)
+energy = 3.0
+texture = SubResource("GradientTexture2D_yx3b8")
+
+[node name="MixedBag" type="Node" parent="."]
+script = ExtResource("3_tt2or")
+Size = 40
+RefillWhenEmpty = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="DisableTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hb1yg")
+
+[node name="CoolerSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sy88p")
+
+[node name="TurnOff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ok4cm")
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="Button/Mobile" to="." method="_on_button_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DisableTimer" to="." method="_on_disable_timer_timeout"]
+[connection signal="finished" from="Song" to="." method="_on_song_finished"]
+[connection signal="finished" from="CoolerSong" to="." method="_on_song_finished"]
