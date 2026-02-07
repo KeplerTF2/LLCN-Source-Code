@@ -7336,9 +7336,9 @@ vertical_alignment = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 32.0
+offset_top = 21.5
 offset_right = 240.0
-offset_bottom = 64.0
+offset_bottom = 53.5
 tooltip_text = "If the game should run in fullscreen"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -7351,13 +7351,32 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "Fullscreen"
 
+[node name="Borderless" type="Button" parent="SettingsMenu/GeneralTitle"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 15.5
+offset_top = 57.5
+offset_right = 239.5
+offset_bottom = 89.5
+tooltip_text = "If on, lets you remove a lure by pressing the same button you would to place that lure
+(Remove Lure button is still functional with this setting enabled)"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_lxs8u")
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+action_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Borderless"
+
 [node name="Stretch" type="Button" parent="SettingsMenu/GeneralTitle"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 16.0
-offset_top = 72.0
-offset_right = 240.0
-offset_bottom = 104.0
+offset_left = 15.5
+offset_top = 93.5
+offset_right = 239.5
+offset_bottom = 125.5
 tooltip_text = "If the game should stretch to the aspect ratio of the window"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -7374,9 +7393,9 @@ text = "Stretch"
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 112.0
+offset_top = 129.5
 offset_right = 240.0
-offset_bottom = 144.0
+offset_bottom = 161.5
 tooltip_text = "If on, it reduces screen tearing at the cost of slightly more input lag"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -7392,10 +7411,10 @@ text = "V-Sync"
 [node name="SmoothTurn" type="Button" parent="SettingsMenu/GeneralTitle"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 16.0
-offset_top = 152.0
-offset_right = 240.0
-offset_bottom = 184.0
+offset_left = 15.5
+offset_top = 166.0
+offset_right = 239.5
+offset_bottom = 198.0
 tooltip_text = "If turning in the office should be smoothed out"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -7412,9 +7431,9 @@ text = "Smooth Turn"
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 192.0
+offset_top = 201.5
 offset_right = 240.0
-offset_bottom = 224.0
+offset_bottom = 233.5
 tooltip_text = "If the flashlight/camera lights should be a toggle or a hold"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -7431,9 +7450,9 @@ text = "Light Toggle"
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 272.0
+offset_top = 273.5
 offset_right = 240.0
-offset_bottom = 304.0
+offset_bottom = 305.5
 tooltip_text = "Enables the CRT shader (which also makes the game a bit brighter), 
 disable this if you're struggling on performance"
 focus_mode = 0
@@ -7450,10 +7469,10 @@ text = "CRT Shader"
 [node name="LureToggle" type="Button" parent="SettingsMenu/GeneralTitle"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 16.0
-offset_top = 232.0
-offset_right = 240.0
-offset_bottom = 264.0
+offset_left = 15.5
+offset_top = 237.5
+offset_right = 239.5
+offset_bottom = 269.5
 tooltip_text = "If on, lets you remove a lure by pressing the same button you would to place that lure
 (Remove Lure button is still functional with this setting enabled)"
 focus_mode = 0
@@ -7949,6 +7968,7 @@ volume_db = -3.0
 [connection signal="mouse_exited" from="SettingsMenu/GamejoltTitle/GameToken" to="." method="_on_game_token_mouse_exited"]
 [connection signal="pressed" from="SettingsMenu/GamejoltTitle/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="toggled" from="SettingsMenu/GeneralTitle/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="SettingsMenu/GeneralTitle/Borderless" to="." method="_on_borderless_toggled"]
 [connection signal="toggled" from="SettingsMenu/GeneralTitle/Stretch" to="." method="_on_stretch_toggled"]
 [connection signal="toggled" from="SettingsMenu/GeneralTitle/VSync" to="." method="_on_v_sync_toggled"]
 [connection signal="toggled" from="SettingsMenu/GeneralTitle/SmoothTurn" to="." method="_on_smooth_turn_toggled"]

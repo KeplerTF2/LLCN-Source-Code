@@ -49,6 +49,7 @@ class_name SaveFile
 
 @export var Volume : float = 1.0
 @export var Fullscreen : bool = true
+@export var Borderless : bool = true
 @export var Stretch : bool = true
 @export var VSync : bool = true
 @export var JumpscareVolume : float = 1.0

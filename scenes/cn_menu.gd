@@ -407,9 +407,19 @@ func _on_main_menu_button_down():
 func _on_fullscreen_toggled(toggled_on):
 	if toggled_on:
 		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN
+		$SettingsMenu/GeneralTitle/Borderless.disabled = false
 	else:
 		get_window().mode = Window.MODE_WINDOWED
+		$SettingsMenu/GeneralTitle/Borderless.disabled = true
 	PlayerData.SaveData.Fullscreen = toggled_on
+	PlayerData.save_character_data(PlayerData.SaveData)
+	
+func _on_borderless_toggled(toggled_on):
+	if toggled_on:
+		get_window().mode = Window.MODE_FULLSCREEN
+	else:
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN
+	PlayerData.SaveData.Borderless = toggled_on
 	PlayerData.save_character_data(PlayerData.SaveData)
 
 func _on_stretch_toggled(toggled_on):
